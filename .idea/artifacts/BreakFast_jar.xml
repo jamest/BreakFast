@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="BreakFast:jar">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="BreakFast.jar">
+      <element id="module-output" name="BreakFast" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>

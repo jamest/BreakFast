@@ -1,0 +1,17 @@
+name: BreakFast
+version: 1.0.0
+description: Utility to break blocks with one hit. Optionally drop block after breaking.
+main: io.github.jamest.breakfast.BreakFast
+
+commands:
+  breakfast:
+    description: Enable/disable BreakFast
+    aliases: [bf]
+  breakfastdrop:
+    description: Enables/disables drop when using BreakFast
+    aliases: [bfd]
+
+permissions:
+  breakfast.use:
+    description: Allows use of BreakFast command.
+    default: op
