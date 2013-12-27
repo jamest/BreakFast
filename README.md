@@ -12,8 +12,10 @@ Commands
 - alias: /bf
 - description: enables/disables the Break Fast plugin for you.
 - permissions: breakfast.use
+- default: op
 
 #### /BreakFastDrop
 - alias: /bfd
 - description: enables/disables dropping of blocks destroyed using Break Fast
 - permissions: breakfast.use
+- default: op
