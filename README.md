@@ -19,3 +19,31 @@ Commands
 - description: enables/disables dropping of blocks destroyed using Break Fast
 - permissions: breakfast.use
 - default: op
+
+Usage
+--------
+
+Using Break *Fast* couldn't be easier, just enable Break *Fast* plugin then break blocks normally using left click.
+
+Usage steps:
+- Enable Break *Fast* with /BreakFast ( or /bf)
+- Break blocks with left click. This will only take one hit now.
+- [optionally] Enable Break *Fast* Drop with /BreakFastDrop (or /bfd)
+- Enabling Break *Fast* Drop means when Break *Fast* is enabled, broken blocks will drop into the world normally. Great for strip mining
+
+Configuration
+--------
+
+There is no configuration necessary for this plugin.
+
+Permissions
+--------
+
+breakfast.use
+- allows usage of /BreakFast and /BreakFastDrop commands
+- defaults to op
+
+Known Issues
+--------
+
+- Breaking mineral blocks such as coal/redstone/gold/iron will not drop the mineral even with Break *Fast* Drop enabled.
