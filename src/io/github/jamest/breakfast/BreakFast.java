@@ -48,6 +48,18 @@ public class BreakFast extends JavaPlugin
         getLogger().info("version " + pdf.getVersion() + " has been disabled.");
     }
 
+    private boolean getDropEnabled(String playerName) {
+        return this.dropEnabled != null
+                && this.dropEnabled.containsKey(playerName)
+                && this.dropEnabled.get(playerName);
+    }
+
+    private String getEnabledString(Boolean enabled) {
+        String msg = enabled
+                ? ChatColor.GREEN + "enabled" + ChatColor.WHITE
+                : ChatColor.RED + "disabled" + ChatColor.WHITE;
+    }
+
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
         Player player = (Player)sender;
@@ -55,8 +67,9 @@ public class BreakFast extends JavaPlugin
             if(player.hasPermission("breakfast.use")) {
                 Boolean enable = !this.bfEnabled.containsKey(player.getName()) || !this.bfEnabled.get(player.getName());
                 this.bfEnabled.put(player.getName(), enable);
-                String msg = enable ? "enabled!" : "disabled!";
-                sender.sendMessage(this.nameTag + msg);
+                String msgEnable = getEnabledString(enable);
+                String msgDrop = getEnabledString(getDropEnabled(player.getName()))
+                sender.sendMessage(this.nameTag + msgEnable + " with drop " + msgDrop);
 
             }
             else {
@@ -65,10 +78,10 @@ public class BreakFast extends JavaPlugin
             return true;
         }
         if (cmd.getName().equalsIgnoreCase("breakfastdrop") || cmd.getName().equalsIgnoreCase("bfd")) {
-            Boolean drop = !this.dropEnabled.containsKey(player.getName()) || !this.dropEnabled.get(player.getName());
+            Boolean drop = !getDropEnabled(player.getName());
             this.dropEnabled.put(player.getName(),drop);
-            String msg = drop ? " drop enabled!" : " drop disabled!";
-            sender.sendMessage(this.nameTag + msg);
+            String msg = getEnabledString(drop);
+            sender.sendMessage(this.nameTag + " drop " + msg);
             return true;
         }
 
@@ -84,7 +97,7 @@ public class BreakFast extends JavaPlugin
 
         World world = player.getWorld();
         Block block = e.getClickedBlock();
-        Boolean drop = this.dropEnabled.containsKey(player.getName()) && this.dropEnabled.get(player.getName());
+        Boolean drop = getDropEnabled(player.getName());
 
         if ((e.getAction() == Action.LEFT_CLICK_BLOCK)
                 && block.getLocation().getY() > 0.0D
