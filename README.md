@@ -1,6 +1,7 @@
 # Break *Fast*
 
 Current version: v1.0.1
+
 Allows players to destroy blocks with one hit.
 
 When enabled, you can break blocks in one hit. No special items required. You also have the option of having the block dropped when breaking it. Default behavior is not dropping broken blocks.
