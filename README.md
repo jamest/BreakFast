@@ -48,4 +48,4 @@ breakfast.use
 Known Issues
 --------
 
-- Breaking mineral blocks such as coal/redstone/gold/iron will not drop the mineral even with Break *Fast* Drop enabled.
+:white_check_mark: No known issues!
