@@ -36,7 +36,10 @@ Usage steps:
 Configuration
 --------
 
-There is no configuration necessary for this plugin.
+See config.yml
+
+defaults:
+- drop-enabled: determines if drop is enabled or disabled when Break *Fast* is enabled.
 
 Permissions
 --------
@@ -48,4 +51,4 @@ breakfast.use
 Known Issues
 --------
 
-:white_check_mark: No known issues!
+- does not honor worldguard or other protection plugins
