@@ -1,0 +1,3 @@
+defaults:
+  #this setting enables drop by default when plugin is enabled
+  enable-drop: false
