@@ -1,6 +1,6 @@
 # Break *Fast*
 
-Current version: v1.0.1
+Current version: v1.1.1
 
 Allows players to destroy blocks with one hit.
 
@@ -36,10 +36,7 @@ Usage steps:
 Configuration
 --------
 
-See config.yml
-
-defaults:
-- drop-enabled: determines if drop is enabled or disabled when Break *Fast* is enabled.
+- **defaults.drop-enabled** : determines if drop is enabled or disabled when Break *Fast* is enabled.
 
 Permissions
 --------
@@ -51,4 +48,4 @@ breakfast.use
 Known Issues
 --------
 
-- does not honor worldguard or other protection plugins
+:white_check_mark: no known issues!
