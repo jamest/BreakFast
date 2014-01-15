@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
@@ -241,6 +242,17 @@ public class BreakFast extends JavaPlugin
                 block.setType(Material.AIR);
             }
 
+        }
+    }
+
+    @EventHandler
+    public void playerChangedWorld(PlayerChangedWorldEvent e) {
+        Player player = e.getPlayer();
+        PlayerSettings playerSettings = getMetadataForPlayer(player);
+        if(playerSettings.getEnabled()) {
+            playerSettings.setEnabled(false);
+            setMetadataForPlayer(player, playerSettings);
+            player.sendMessage(this.NameTag + " " + getEnabledString(playerSettings.getEnabled()));
         }
     }
 }
