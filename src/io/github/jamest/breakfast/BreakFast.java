@@ -202,12 +202,21 @@ public class BreakFast extends JavaPlugin
                 setMetadataForPlayer(player, settings);
             }
 
+
+            // check break permissions
+            BlockBreakEvent event = new BlockBreakEvent(block,player);
+            getServer().getPluginManager().callEvent(event);
+            if(event.isCancelled()) {
+                return;
+            }
+
             // check for drop
             if(settings.getDrop()) {
                 block.breakNaturally();
             } else {
                 block.setType(Material.AIR);
             }
+
         }
     }
 }
