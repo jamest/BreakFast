@@ -3,13 +3,17 @@ package io.github.jamest.breakfast;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_7_R1.CraftSound;
+import org.bukkit.craftbukkit.v1_7_R1.util.CraftMagicNumbers;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
@@ -18,6 +22,8 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
 
 public class BreakFast extends JavaPlugin
@@ -56,6 +62,7 @@ public class BreakFast extends JavaPlugin
 
     private Boolean dropEnabledDefault;
     private String name;
+    private HashMap<String,Sound> soundMap;
 
     private final String PluginMetadataKey = "jamest.breakfast.enable";
     private final String DropMetadataKey = "jamest.breakfast.drop";
@@ -65,8 +72,21 @@ public class BreakFast extends JavaPlugin
 
     public void onEnable()
     {
-        saveDefaultConfig();
+        if(this.soundMap == null) {
+            this.soundMap = new HashMap<String, Sound>();
 
+            try{
+                for(Sound sound : Sound.values()) {
+                    Field soundField = CraftSound.class.getDeclaredField("sounds");
+                    soundField.setAccessible(true);
+                    String[] sounds = (String[]) soundField.get(null);
+
+                    this.soundMap.put(sounds[sound.ordinal()],sound);
+                }
+            } catch(Exception e) {
+                getLogger().info("EXCEPTION: " + e.getMessage());
+            }
+        }
         this.dropEnabledDefault = (Boolean)getConfig().get("defaults.enable-drop");
         getServer().getPluginManager().registerEvents(this, this);
         PluginDescriptionFile pdf = getDescription();
@@ -209,6 +229,10 @@ public class BreakFast extends JavaPlugin
             if(event.isCancelled()) {
                 return;
             }
+
+            // play sound before breaking the block
+            Sound sound = this.soundMap.get(CraftMagicNumbers.getBlock(block).stepSound.getBreakSound());
+            block.getWorld().playSound(block.getLocation(), sound, 0.8f, 1);
 
             // check for drop
             if(settings.getDrop()) {
