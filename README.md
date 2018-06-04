@@ -1,6 +1,6 @@
 # Break *Fast*
 
-Current version: v1.1.1
+Current version: v1.2.0
 
 Allows players to destroy blocks with one hit.
 
