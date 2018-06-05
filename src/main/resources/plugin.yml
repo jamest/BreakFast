@@ -1,5 +1,5 @@
 name: BreakFast
-version: 1.1.0
+version: 1.1.2
 description: Utility to break blocks with one hit. Optionally drop block after breaking.
 main: io.github.jamest.breakfast.BreakFast
 
