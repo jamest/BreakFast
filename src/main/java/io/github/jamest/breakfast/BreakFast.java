@@ -218,7 +218,7 @@ public class BreakFast extends JavaPlugin
             }
 
             // play sound before breaking the block
-            block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getTypeId());
+            block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
 
             // check for drop
             if(settings.getDrop()) {
